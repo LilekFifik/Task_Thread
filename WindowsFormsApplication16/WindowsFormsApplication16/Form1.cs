@@ -120,7 +120,7 @@ namespace WindowsFormsApplication16
                
                 string str="";
                 string NoNodesText = "Совпадения отсуствуют";
-                string NoFilesText = "Нет найдено файлов с выбранным расширением";
+                string NoFilesText = "Нет найденых файлов с выбранным расширением";
                 int n = 1;
                 string[] patharray = new string[n];
                 count = 0;
