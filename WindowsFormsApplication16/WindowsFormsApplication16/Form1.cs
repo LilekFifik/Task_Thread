@@ -163,28 +163,31 @@ namespace WindowsFormsApplication16
                             using (var sr = new StreamReader(fileName, Encoding.GetEncoding(1251)))
                             {
                                  string read = null;
-                                while ((read = sr.ReadLine()) != null)
-                                {
-                                    string[] split = rich.Split(new Char[] { ' ' });
-                                    if (split[split.Length - 1] == "")
-                                    {
-                                        Array.Resize(ref split, split.Length - 1);
+                                 while ((read = sr.ReadLine()) != null)
+                                 {
+                                     string[] split = rich.Split(new Char[] { ' ' });
+                                     if (split[split.Length - 1] == "")
+                                     {
+                                         Array.Resize(ref split, split.Length - 1);
 
-                                    }
-                                    for (int g = 0; g < split.Length; g++)
-                                    {
-                                        str = split[g] + " ";
-                                    }
-                                    if (read.ToLower().Contains(str.ToLower()))
-                                    {
+                                     }
+                                     for (int g = 0; g < split.Length; g++)
+                                     {
+                                         str = split[g] + " ";
+                                     }
+                                     if (split.Length != 0)
+                                     {
+                                         if (read.ToLower().Contains(str.ToLower()))
+                                         {
 
-                                        Array.Resize(ref patharray, n);
-                                        patharray[n - 1] = fileName;
+                                             Array.Resize(ref patharray, n);
+                                             patharray[n - 1] = fileName;
 
-                                        n++;
-                                        b = true;
-                                    }
-                                }
+                                             n++;
+                                             b = true;
+                                         }
+                                     }
+                                 }
 
 
                             }
@@ -252,7 +255,7 @@ namespace WindowsFormsApplication16
             
            
             TimeSpan ts = DateTime.Now.Subtract(startDate);
-            string sTime = ts.Hours.ToString() + ts.Minutes.ToString("00") +
+            string sTime = ts.Hours.ToString("00") +":"+ ts.Minutes.ToString("00") +
                ":" + ts.Seconds.ToString("00") +
                ":" + ts.Milliseconds.ToString("000");
            label1.Text = sTime;
