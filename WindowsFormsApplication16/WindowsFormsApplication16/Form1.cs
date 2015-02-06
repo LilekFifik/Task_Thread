@@ -20,7 +20,7 @@ namespace WindowsFormsApplication16
         delegate void ToLabelHandler(string Text);
         delegate void NoNodesHandler(string NoNodesText);
         delegate void butt_eventHandler(bool b);
-        private delegate void UpdateLabelDelegate();
+  
   
    
        public Form1()
@@ -44,16 +44,18 @@ namespace WindowsFormsApplication16
            {
                StreamReader sr2 = new StreamReader(savedata);
                string[] lines = System.IO.File.ReadAllLines(savedata);
+               if (lines.Length != 0)
+               {
+                   using (var sr = new StreamReader(savedata, Encoding.GetEncoding(1251)))
+                   {
 
-                  using (var sr = new StreamReader(savedata, Encoding.GetEncoding(1251)))
-                       {
-
-                           label9.Text = lines[0].ToString();
-                           comboBox2.Text = lines[1].ToString();
-                           richTextBox1.Text += lines[2].ToString();
-                       }
-                       sr2.Close();
+                       label9.Text = lines[0];
+                       comboBox2.Text = lines[1];
+                       richTextBox1.Text += lines[2];
+                   }
                    
+               }
+               sr2.Close();
                
            }
        
