@@ -5,4 +5,3 @@ c:\users\admin\documents\visual studio 2010\Projects\WindowsFormsApplication16\W
 c:\users\admin\documents\visual studio 2010\Projects\WindowsFormsApplication16\WindowsFormsApplication16\obj\x86\Debug\WindowsFormsApplication16.csproj.GenerateResource.Cache
 c:\users\admin\documents\visual studio 2010\Projects\WindowsFormsApplication16\WindowsFormsApplication16\obj\x86\Debug\WindowsFormsApplication16.exe
 c:\users\admin\documents\visual studio 2010\Projects\WindowsFormsApplication16\WindowsFormsApplication16\obj\x86\Debug\WindowsFormsApplication16.pdb
-C:\Users\admin\documents\visual studio 2010\Projects\WindowsFormsApplication16\WindowsFormsApplication16\obj\x86\Debug\WindowsFormsApplication16.csprojResolveAssemblyReference.cache

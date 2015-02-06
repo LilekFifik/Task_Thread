@@ -63,7 +63,7 @@ namespace WindowsFormsApplication16
          timer1.Interval = 100;
       
            timer1.Enabled = true;
-           button1.Text = "Start/pause";
+           button1.Text = "Start";
            button2.Text = "Stop";  
            backgroundWorker1.WorkerReportsProgress = true;
            backgroundWorker1.WorkerSupportsCancellation = true;
@@ -75,7 +75,7 @@ namespace WindowsFormsApplication16
        {
             this.Text = e.ProgressPercentage.ToString();
         }
-     private string openFileName = "", folderName = "", rich = "", cb = "";
+     private string folderName = "", rich = "", cb = "";
         private int count = 0;
      
       
@@ -120,6 +120,7 @@ namespace WindowsFormsApplication16
                
                 string str="";
                 string NoNodesText = "Совпадения отсуствуют";
+                string NoFilesText = "Нет найдено файлов с выбранным расширением";
                 int n = 1;
                 string[] patharray = new string[n];
                 count = 0;
@@ -219,14 +220,18 @@ namespace WindowsFormsApplication16
                 timer1.Stop();
                 butt_event(b = true);
                 flag = false;
-
-                if (array.Length == 0)
+               if (count_files == 0)
+                {
+                    NoNodes(NoFilesText);
+                }
+               else  if (array.Length == 0)
                 {
                    
                     NoNodes(NoNodesText);
                   
 
                 }
+            
 
               
                
@@ -237,7 +242,7 @@ namespace WindowsFormsApplication16
       {
          
          timer1.Stop();
-        
+          
       }
 
       int t = 0;
@@ -304,31 +309,38 @@ namespace WindowsFormsApplication16
         
         private void button1_Click_1(object sender, EventArgs e)
         {
-            timer1.Start();
-              flag = true;
-            Control.CheckForIllegalCrossThreadCalls = false;
-            folderName = label9.Text;
-            string[] contents= {label9.Text,comboBox2.Text,richTextBox1.Text};
-          
-                File.WriteAllLines(Application.StartupPath +@"/"+ "savedata.txt", contents);
-            
-            button1.Enabled = false;
-           
-          rich = richTextBox1.Text;
-            cb = comboBox2.Text;
-            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
-            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
-            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
-          
-            if (!backgroundWorker1.IsBusy)
+            if (label9.Text == "")
             {
-               
-                backgroundWorker1.RunWorkerAsync();
-               
-                return;
+                MessageBox.Show("Вы не выбрали папку");
             }
+            else
+            {
 
-           
+                timer1.Start();
+                flag = true;
+                Control.CheckForIllegalCrossThreadCalls = false;
+                folderName = label9.Text;
+                string[] contents = { label9.Text, comboBox2.Text, richTextBox1.Text };
+
+                File.WriteAllLines(Application.StartupPath + @"/" + "savedata.txt", contents);
+
+                button1.Enabled = false;
+
+                rich = richTextBox1.Text;
+                cb = comboBox2.Text;
+                label8.Text = ""; label7.Text = "";label1.Text="";
+                backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
+                backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+                backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
+                if (!backgroundWorker1.IsBusy)
+                {
+
+                    backgroundWorker1.RunWorkerAsync();
+
+                    return;
+                }
+
+            }
             
   }
      private void button3_Click(object sender, EventArgs e)
